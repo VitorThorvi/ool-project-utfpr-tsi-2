@@ -1,22 +1,34 @@
 package control;
 
-import model.Client;
+import model.*;
+
+import java.util.ArrayList;
 
 public class Main {
+  public static void main(String[] args) {
+    //cadastro funcionário
+    Employee francisco = new Employee(0);
+    francisco.setName("Francisco");
 
-    public static void main(String[] args) {
-        Client joao = new Client(78);
-        Client maria = new Client(99);
+    // cadastro de cliente
+    Client emerson = new Client(12345);
+    emerson.setName("emerson");
+    Address emersonAddr = new Address();
+    emersonAddr.setStreet("rua manoel ribas");
+    Register register1 = new Register(emerson,emersonAddr);
 
-        System.out.println("Joao = "+joao.getName());
-        System.out.println("Maria = "+maria.getName());
+    // cadastro do serviço
+    Service service1 = new Service(1);
+    service1.setDescription("arrumar a televisão");
 
-        joao.setName("Joao da Silva");
-        maria.setName("Maria Francisca");
+    // criar ordem de serviço
+    Order ordem1 = new Order(12);
+    ordem1.addService(service1);
+    ordem1.setClient(emerson);
+    ordem1.setEmployee(francisco);
 
-        System.out.println("Joao = "+joao.getName());
-        System.out.println("Maria = "+maria.getName());
-
-    }
+    // listar ordens em aberto
+    System.out.println(ordem1.getId()+"\n"+ ordem1.getClient().getName()+"\n"+ordem1.getEmployee().getName()+"\n"+ordem1.getService().get(0).getDescription());
+  }
 
 }
